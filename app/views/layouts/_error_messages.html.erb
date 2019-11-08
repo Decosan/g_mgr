@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+  <div class='error-explanation'>
+    <%= errors.count %>件のエラーがあります。
+  </div>
+  <ul>
+    <% model.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>  
+<% end %>

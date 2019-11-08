@@ -1,5 +1,7 @@
 {
   "name": "g_mgr",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
 }
