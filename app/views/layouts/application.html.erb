@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GMgr</title>
+    <title>G-Score Mgr</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width">
@@ -10,6 +10,46 @@
   </head>
 
   <body>
+    <div class="header">
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-12">
+                  <div class ='logo'>
+                      <%= image_tag("top-logo.png") %>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="headerNav">
+      <div class="container">
+          <div class="row headerNavBox">
+              <a href="#">
+                  <div class="col-xs-6 col-sm-3 headerNavBtn">
+                      トップページ
+                  </div>
+              </a>
+              <a href="#">
+                  <div class="col-xs-6 col-sm-3 headerNavBtn">
+                      メニュー1
+                  </div>
+              </a>
+              <a href="#">
+                  <div class="col-xs-6 col-sm-3 headerNavBtn">
+                      メニュー2
+                  </div>
+              </a>
+              <a href="#">
+                  <div class="col-xs-6 col-sm-3 headerNavBtn">
+                      メニュー3
+                  </div>
+              </a>
+          </div>
+      </div>
+    </div>
+
     <%= yield %>
+
   </body>
 </html>
