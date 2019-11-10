@@ -14,6 +14,10 @@
       <div class="container">
           <div class="row">
               <div class="col-xs-12">
+              <% if logged_in? %>
+                ようこそ、<%= current_user.name %>さん。
+                <%= link_to 'Logout', session_path(current_user),method: :delete, data: {confirm:'Are you sure?'} %>
+              <% end %>
                   <div class ='logo'>
                       <%= image_tag("top-logo.png") %>
                   </div>
@@ -24,7 +28,8 @@
 
     <div class="headerNav">
       <div class="container">
-          <div class="row headerNavBox">
+        <div class="row headerNavBox">
+          <% if logged_in? %>
               <a href="#">
                   <div class="col-xs-6 col-sm-3 headerNavBtn">
                       トップページ
@@ -45,7 +50,15 @@
                       メニュー3
                   </div>
               </a>
-          </div>
+          <% else %>
+            <div class="col-xs-6 headerNavBtn">
+              <%= link_to 'Sign up', new_user_path %>
+            </div>
+            <div class="col-xs-6 headerNavBtn">
+              <%= link_to 'Login', new_session_path %>
+            </div>
+          <% end %>  
+        </div>
       </div>
     </div>
 

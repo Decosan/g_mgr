@@ -1,2 +1,18 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<div class = 'container'>
+  <h1>Login Page</h1>
+  <% render 'layouts/flash_messages' %>
+  <%= form_with(scope: :session, url: sessions_path, local: true)do |f| %>
+
+    <div class='form_field'>
+      <%= f.label :email, 'Email' %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class='form_field'>
+      <%= f.label :password, 'Password' %>
+      <%= f.password_field :password %>
+    </div>
+
+    <%= f.submit 'Login!' %>
+  <% end %>
+</div>  

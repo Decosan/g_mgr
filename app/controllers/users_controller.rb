@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :set_user, only:[:show,:edit,:update,:destroy]
+
+
   def index
     @users = User.all.order('created_at DESC').page(params[:page])
   end
@@ -18,6 +21,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
   end
 
@@ -31,5 +37,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name,:email,:password,:password_confirmation)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
