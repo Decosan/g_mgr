@@ -11,9 +11,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] ='User Created!'
-      redirect_to :index
+      redirect_to users_path
     else
-      flash[:danfer] ='failed..'
+      flash[:danger] ='failed..'
       render 'new'
     end
   end

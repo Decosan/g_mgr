@@ -22,7 +22,13 @@ group :development do
   
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  
+  gem 'better_errors' # render better error page
+  gem 'binding_of_caller' # use irb on better_errors
+  gem 'pry-rails' # use binding.pry
+  gem 'pry-byebug' # use step over on binding.pry
+  gem 'pry-doc' # extend pry document support
+  gem 'rubocop'
+  gem 'rails_best_practices'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
