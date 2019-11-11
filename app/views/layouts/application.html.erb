@@ -7,6 +7,25 @@
     <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+      $(function(){
+        $('#score_score_out').change(function(){
+          $("#score_score_total").val(parseInt($("#score_score_out").val()) + parseInt($("#score_score_in").val()));
+        });
+        $('#score_score_in').change(function(){
+          $("#score_score_total").val(parseInt($("#score_score_out").val()) + parseInt($("#score_score_in").val()));
+        });
+      });
+      
+      $(function(){
+        $('#score_put_out').change(function(){
+          $("#score_put_total").val(parseInt($("#score_put_out").val()) + parseInt($("#score_put_in").val()));
+        });
+        $('#score_put_in').change(function(){
+          $("#score_put_total").val(parseInt($("#score_put_out").val()) + parseInt($("#score_put_in").val()));
+        });
+      });
+    </script>
   </head>
 
   <body>

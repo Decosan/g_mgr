@@ -1,2 +1,47 @@
-<h1>Scores#new</h1>
-<p>Find me in app/views/scores/new.html.erb</p>
+<div class = 'container'>
+  <% render 'layouts/flash_messages' %>
+  <%= form_with(model:@score, local: true)do |f| %>
+    <% render 'layouts/error_messages', model: f.object %>
+
+    <div class="number_field">
+      <%= f.label :play_day, 'Date:' %>
+      <%= f.date_select(
+          :play_day,
+          start_year: Time.now.year,
+          end_year: (Time.now.year)) %>
+    </div>
+
+    <div class='number_field'>
+      <%= f.label :out_score, 'Score(OUT):' %>
+      <%= f.number_field :out_score, {value:45,in: 30...70} %>
+    </div>
+
+    <div class='number_field'>
+      <%= f.label :in_score, 'Score(IN):' %>
+      <%= f.number_field :in_score, {value:45,in: 30...70} %>
+    </div>
+
+    <div class='number_field'>
+      <%= f.label :total_score, 'Score(TOTAL):' %>
+      <%= f.number_field :total_score %>
+    </div>
+
+    <div class='number_field'>
+      <%= f.label :out_put, 'Put(OUT):' %>
+      <%= f.number_field :out_put, {value:15,in: 5...25} %>
+    </div>
+
+    <div class='number_field'>
+      <%= f.label :in_put, 'Put(IN):' %>
+      <%= f.number_field :in_put, {value:15,in: 5...25} %>
+    </div>
+
+    <div class='number_field'>
+      <%= f.label :total_put, 'Put(TOTAL):' %>
+      <%= f.number_field :total_put %>
+    </div>
+
+
+    <%= f.submit 'New SCORE!' %>
+  <% end %>
+</div>  
