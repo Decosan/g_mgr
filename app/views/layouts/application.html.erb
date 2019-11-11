@@ -9,20 +9,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script>
       $(function(){
-        $('#score_score_out').change(function(){
-          $("#score_score_total").val(parseInt($("#score_score_out").val()) + parseInt($("#score_score_in").val()));
+        $('#score_out_score').change(function(){
+          $("#score_total_score").val(parseInt($("#score_out_score").val()) + parseInt($("#score_in_score").val()));
         });
-        $('#score_score_in').change(function(){
-          $("#score_score_total").val(parseInt($("#score_score_out").val()) + parseInt($("#score_score_in").val()));
+        $('#score_in_score').change(function(){
+          $("#score_total_score").val(parseInt($("#score_out_score").val()) + parseInt($("#score_in_score").val()));
         });
       });
       
       $(function(){
-        $('#score_put_out').change(function(){
-          $("#score_put_total").val(parseInt($("#score_put_out").val()) + parseInt($("#score_put_in").val()));
+        $('#score_out_put').change(function(){
+          $("#score_total_put").val(parseInt($("#score_out_put").val()) + parseInt($("#score_in_put").val()));
         });
-        $('#score_put_in').change(function(){
-          $("#score_put_total").val(parseInt($("#score_put_out").val()) + parseInt($("#score_put_in").val()));
+        $('#score_in_put').change(function(){
+          $("#score_total_put").val(parseInt($("#score_out_put").val()) + parseInt($("#score_in_put").val()));
         });
       });
     </script>
