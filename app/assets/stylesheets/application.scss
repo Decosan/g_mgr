@@ -37,3 +37,30 @@
 .headerNavBtn:hover{
   background:#EEE;
 }
+
+.thumbnail {
+  position: relative;
+}
+
+.date {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  background: orange;
+  width: 100px;
+  height: 100px;
+  padding: 12.5px 0;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 25px;
+  .day {
+    font-size: 18px;
+  }
+  .month {
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+}

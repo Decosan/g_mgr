@@ -6,6 +6,7 @@ class ScoresController < ApplicationController
   end
 
   def show
+    @courses = Course.all
   end
 
   def new
@@ -35,7 +36,7 @@ class ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:play_day,:in_score,:out_score,:total_score,:in_put,:out_put,:total_put, images: [])
+    params.require(:score).permit(:play_day,:in_score,:out_score,:total_score,:in_put,:out_put,:total_put,:course_id, images: [])
   end
 
   def set_score

@@ -4,6 +4,11 @@
     <% render 'layouts/error_messages', model: f.object %>
 
     <div class="number_field">
+      <%= f.label :course_id,"Course Select" %>
+      <%= select_tag 'score[course_id]', options_from_collection_for_select(@courses, :id, :name) %>
+    </div>  
+
+    <div class="number_field">
       <%= f.label :play_day, 'Date:' %>
       <%= f.date_select(
           :play_day,

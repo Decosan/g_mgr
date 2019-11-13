@@ -1,6 +1,6 @@
 <div class="container">
   <div class="info">
-    <h1>New Score Card</h1>
+    <h1><%= @score.course.name %>'s Score</h1>
   </div>
   
   <div class="column">
@@ -12,10 +12,10 @@
       <div class="thumbnail">
         <div class="date">
           <div class="day">
-            <%= @score.date.day %>
+            <%= @score.play_day.day %>
           </div>
           <div class="month">
-            <%= @score.date.month %>
+            <%= @score.play_day.strftime("%B") %>
           </div>
         </div>
         <div>
@@ -32,12 +32,11 @@
       <div class="post-content">
         <div class="category">Category...
         </div>
-        <h1 class="title"><%= @score.out_score %> + <%= @score.in_score %> = <%= @score.total_score %>
+        <h1 class="title">SCORE: <%= @score.out_score %> (OUT) + <%= @score.in_score %> (IN) = <%= @score.total_score %> (TOTAL)
         </h1>
-        <h2 class="sub_title"><%= @score.out_put %> + <%= @score.in_put %> = <%= @score.total_put %>
+        <h2 class="sub_title">PUT: <%= @score.out_put %> (OUT) + <%= @score.in_put %> (IN) = <%= @score.total_put %> (TOTAL)
         </h2>
-        <p class="description">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.
-        </p>
+        
         <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-">o</i> 6 mins ago
 </span><span class="comments"><i class="fa fa-comments"></i><a href="#">39 comments</a></span>
         </div>
