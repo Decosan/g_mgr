@@ -37,8 +37,14 @@
         <h2 class="sub_title">PUT: <%= @score.out_put %> (OUT) + <%= @score.in_put %> (IN) = <%= @score.total_put %> (TOTAL)
         </h2>
         
-        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-">o</i> 6 mins ago
-</span><span class="comments"><i class="fa fa-comments"></i><a href="#">39 comments</a></span>
+        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-">o</i> 6 mins ago</span><span class="comments"><i class="fa fa-comments"></i><a href="#">39 comments</a></span>
+          <div>
+              <%= render 'comments/new', comment :@comment %>
+          </div>
+
+          <div>
+              <%= render 'comments/index', comments :@comments %>
+          </div>
         </div>
       </div>
     </div>

@@ -11,6 +11,7 @@ class ScoresController < ApplicationController
 
   def new
     @score = Score.new
+    @courses = Course.all
   end
 
   def create
