@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.new(comment_params)
-    @commnet.user_id = current_user.id
+    @score = Score.find(params[:score_id])
+    @comment = @score.comments.new(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save
       flash[:success] ='コメント追加されました。'
       redirect_back(fallback_location: root_path)

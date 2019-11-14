@@ -7,6 +7,8 @@ class ScoresController < ApplicationController
 
   def show
     @courses = Course.all
+    @comment = Comment.new
+    @comments = Comment.all.order('created_at DESC')
   end
 
   def new

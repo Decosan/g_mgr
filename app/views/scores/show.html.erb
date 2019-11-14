@@ -1,6 +1,7 @@
 <div class="container">
   <div class="info">
-    <h1><%= @score.course.name %>'s Score</h1>
+    <h1>Golf Course: <%= @score.course.name %></h1>
+    <h3>Region: <%= @score.course.location %></h3>
   </div>
   
   <div class="column">
@@ -37,13 +38,21 @@
         <h2 class="sub_title">PUT: <%= @score.out_put %> (OUT) + <%= @score.in_put %> (IN) = <%= @score.total_put %> (TOTAL)
         </h2>
         
-        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-">o</i> 6 mins ago</span><span class="comments"><i class="fa fa-comments"></i><a href="#">39 comments</a></span>
+        <div class="post-meta"><span class="timestamp">Time.now - <%= @score.comments.last.created_at %></span> <span class="comments"><%= @score.comments.count %>comments</span>
           <div>
-              <%= render 'comments/new', comment :@comment %>
+            <%= form_with(model: [@score,@comment],local: true)do |f| %>
+              <%= f.label :body, 'Comment' %>
+              <%= f.text_area :body, rows: 3 %>
+              <%= f.submit  %>
+            <% end %>
           </div>
 
           <div>
-              <%= render 'comments/index', comments :@comments %>
+            <ul>
+              <% @comments.each do |comment| %>
+                <li><%= comment.body %></li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
