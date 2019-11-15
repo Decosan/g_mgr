@@ -4,6 +4,7 @@ class Score < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many_attached :images
   
+  
   validates :in_score, presence: true
   validates :out_score, presence: true
   validates :total_score, presence: true

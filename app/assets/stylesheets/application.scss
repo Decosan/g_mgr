@@ -42,6 +42,20 @@
   position: relative;
 }
 
+@media screen and (max-width:929px) { 
+  /*　画面サイズが480pxからはここを読み込む　*/
+  #score_image { 
+    width: 400px;
+  }
+}
+
+@media screen and (min-width:930px) and ( max-width:1199px) {
+  /*　画面サイズが480pxから768pxまではここを読み込む　*/
+  #score_image { 
+    width: 800px;
+  }
+}
+
 .date {
   position: absolute;
   top: 20px;

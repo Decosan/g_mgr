@@ -22,7 +22,7 @@
         <div>
           <% if @score.images.attached? %>
             <% @score.images.each do |image| %>
-              <%= image_tag image %> <br>
+              <%= image_tag image.variant(resize:'1024x1024').processed ,id:'score_image'%> <br>
             <% end %>
           <% else %>
             <h1>No Image</h1>  
@@ -38,7 +38,7 @@
         <h2 class="sub_title">PUT: <%= @score.out_put %> (OUT) + <%= @score.in_put %> (IN) = <%= @score.total_put %> (TOTAL)
         </h2>
         
-        <div class="post-meta"><span class="timestamp">Time.now - <%= @score.comments.last.created_at %></span> <span class="comments"><%= @score.comments.count %>comments</span>
+        <div class="post-meta"><span class="timestamp"><%= @score.comments.count %> comments</span>
           <div>
             <%= form_with(model: [@score,@comment],local: true)do |f| %>
               <%= f.label :body, 'Comment' %>
@@ -50,7 +50,12 @@
           <div>
             <ul>
               <% @comments.each do |comment| %>
-                <li><%= comment.body %></li>
+                <li>
+                  <%= comment.body %>  - <%= time_ago_in_words (comment.created_at) %>前
+                  <% if comment.user_id == current_user.id %>
+                    <%= link_to 'Del', score_comment_path(@score,comment), method: :delete %>
+                  <% end %>  
+                </li>
               <% end %>
             </ul>
           </div>
