@@ -13,6 +13,7 @@ ja:
         body: "コメント"
       score:
         in_score: "スコア（IN）"
+        out_score: "スコア（OUT)"
 
   datetime:
     distance_in_words:
