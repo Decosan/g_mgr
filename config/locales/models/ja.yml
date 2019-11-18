@@ -12,9 +12,14 @@ ja:
       comment:
         body: "コメント"
       score:
-        in_score: "スコア（IN）"
+        in_score: "スコア（IN)"
         out_score: "スコア（OUT)"
-
+        total_score: "スコア"
+        in_put: "パット（IN)"
+        out_put: "パット（OUT)"
+        total_put: "パット数"
+        play_day: "日付"
+        course_id: "コース名"
   datetime:
     distance_in_words:
       half_a_minute: "30秒前後"
