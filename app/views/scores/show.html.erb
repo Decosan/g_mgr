@@ -49,7 +49,7 @@
 
           <div>
             <ul>
-              <% @comments.each do |comment| %>
+              <% @score.comments.each do |comment| %>
                 <li>
                   <%= comment.body %>  - <%= time_ago_in_words (comment.created_at) %>前
                   <% if comment.user_id == current_user.id %>

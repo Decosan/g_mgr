@@ -18,13 +18,11 @@
               </div>
               <div class='score_index_img'>
                 <% if score.images.attached? %>
-                  <% score.images.each do |image| %>
-                    <%= image_tag image.variant(resize:'300x300').processed %> <br>
-                  <% end %>
+                  <%= image_tag score.images.first.variant(resize:'300x250').processed %> <br>
                 <% else %>
-                  <h1>No Image</h1>  
+                  <h1 class='no_image'>No Image</h1>  
                 <% end %>
-              </div>  
+              </div>
             </div>
           </div>
 
@@ -43,11 +41,11 @@
               <div>
                 <% if score.comments.present? %>
                   <div class="post-meta">
-                    <span class="timestamp"><i class="fa fa-clock-">o</i><%= time_ago_in_words (score.comments.last.created_at) %>前  -</span><span class="comments"><i class="fa fa-comments"></i><a href="./scores/<%= score.id %>"><%= score.comments.count %> comments</a></span>
+                    <span class="timestamp"><i class="fa fa-clock-">o</i><%= time_ago_in_words (score.comments.last.created_at) %>前  -</span><span class="comments"><i class="fa fa-comments"></i><a href="/scores/<%= score.id %>"><%= score.comments.count %> comments</a></span>
                   </div>
                 <% else %>
                   <div class="post-meta">
-                    <span class="timestamp"><i class="fa fa-clock-">o</i></span><span class="comments"><i class="fa fa-comments"></i><a href="./scores/<%= score.id %>">まだコメントはありません</a></span>
+                    <span class="timestamp"><i class="fa fa-clock-">o</i></span><span class="comments"><i class="fa fa-comments"></i><a href="/scores/<%= score.id %>">まだコメントはありません</a></span>
                   </div>  
                 <% end %>
               </div>

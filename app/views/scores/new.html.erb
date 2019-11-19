@@ -4,16 +4,17 @@
     <% render 'layouts/error_messages', model: f.object %>
 
     <div class="number_field">
-      <%= f.label :course_id,"Course Select" %>
+      <%= f.label :course_id, "コース選択:" %>
       <%= select_tag 'score[course_id]', options_from_collection_for_select(@courses, :id, :name) %>
     </div>  
 
     <div class="number_field">
-      <%= f.label :play_day, 'Date:' %>
+      <%= f.label :play_day, '日付:' %>
       <%= f.date_select(
           :play_day,
           start_year: Time.now.year,
-          end_year: (Time.now.year)) %>
+          end_year: (Time.now.year),
+          order: [:year, :month, :day]) %>
     </div>
 
     <div class='number_field'>
