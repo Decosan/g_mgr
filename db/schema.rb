@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_055602) do
+ActiveRecord::Schema.define(version: 2019_11_19_074114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 2019_11_14_055602) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
   create_table "scores", force: :cascade do |t|
     t.integer "in_score"
     t.integer "out_score"
@@ -69,6 +77,15 @@ ActiveRecord::Schema.define(version: 2019_11_14_055602) do
     t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
+  create_table "user_groups", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_user_groups_on_group_id"
+    t.index ["user_id"], name: "index_user_groups_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -80,6 +97,9 @@ ActiveRecord::Schema.define(version: 2019_11_14_055602) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "scores"
   add_foreign_key "comments", "users"
+  add_foreign_key "groups", "users"
   add_foreign_key "scores", "courses"
   add_foreign_key "scores", "users"
+  add_foreign_key "user_groups", "groups"
+  add_foreign_key "user_groups", "users"
 end
