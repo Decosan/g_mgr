@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :courses, only:[:index,:show]
+  resources :user_groups, only:[:create,:destroy]
+  resources :groups
+  
 end
