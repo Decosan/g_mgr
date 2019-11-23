@@ -1,27 +1,4 @@
 <div class = 'container'>
-  <% render 'layouts/flash_messages' %>
-  <%= form_with(model:@user, local: true)do |f| %>
-    <% render 'layouts/error_messages', model: f.object %>
-    <div class='form_field'>
-      <%= f.label :name, 'Name' %>
-      <%= f.text_field :name %>
-    </div>
-
-    <div class='form_field'>
-      <%= f.label :email, 'Email' %>
-      <%= f.email_field :email %>
-    </div>
-
-    <div class='form_field'>
-      <%= f.label :password, 'Password' %>
-      <%= f.password_field :password %>
-    </div>
-
-    <div class='form_field'>
-      <%= f.label :password_confirmation, 'Confirmation' %>
-      <%= f.password_field :password_confirmation %>
-    </div>
-
-    <%= f.submit 'New User' %>
-  <% end %>
+  <h1>Sign Up</h1>
+  <%= render 'form', user: @user %>
 </div>  

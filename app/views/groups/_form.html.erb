@@ -1,0 +1,10 @@
+<%= form_with(model: @group,local: true)do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
+  <div>
+    <%= f.label :name,'グループ名' %>
+    <%= f.text_field :name, class:'form-control' %>
+  </div>
+
+  <%= f.submit '作成する' %>
+
+<% end %>

@@ -1,11 +1,13 @@
 class GroupsController < ApplicationController
   before_action :set_group, only:[:edit,:update,:destroy,:show]
+  before_action :correct_user, only:[:edit,:destroy]
 
   def index
     @groups = Group.order('created_at DESC').page(params[:page])
   end
 
   def show
+    @scores = Score.joins(user:[:groups]).merge(Group.where(id: @group.id)).page(params[:page])
   end
 
   def new
@@ -52,5 +54,11 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name)
+  end
+
+  def correct_user
+    unless @group.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 end

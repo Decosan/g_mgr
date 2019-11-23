@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   has_many :scores, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :groups, dependent: :destroy
-  has_many :join_groups, through: :user_groups, source: :group
+
   has_many :user_groups, dependent: :destroy
+  has_many :groups, through: :user_groups, source: :group
   
   has_secure_password
   before_validation {email.downcase!}

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       flash[:success] ='User Created!'
       redirect_to users_path
     else
-      flash[:danger] ='failed..'
+      flash[:danger] ='Failed..'
       render 'new'
     end
   end
@@ -29,9 +29,19 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      flash[:success] ='Edit information'
+      redirect_to user_path(@user.id)
+    else
+      flash[:danger] ='Failed..'
+      render 'edit'
+    end
   end
 
   def destroy
+    @user.destroy
+    flash[:danger] ='Deleted..'
+    redirect_to root_path
   end
 
   private 
@@ -43,10 +53,4 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-
-  # def correct_user
-  #   unless logged_in? 
-  #     redirect_to new_session_path
-  #   end
-  # end
 end

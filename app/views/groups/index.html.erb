@@ -2,13 +2,15 @@
   <%= render 'layouts/flash_messages' %>
   <h1>Group Index</h1>
   <% @groups.each.with_index(1) do |group,index| %>
-    <h4>(<%= index %>) <%= group.name %></h4>
+    <h4>(<%= index %>) <a href="/groups/<%= group.id %>/"><%= group.name %></a></h4>
     <% unless group.user_id == current_user.id %>
       <% unless group.user_groups.pluck(:user_id).include?(current_user.id) %>
         <%= link_to 'Join', user_groups_path(group_id: group.id), method: :post %>
       <% else %>
-        <%= link_to 'Leave', user_group_path(id: group.id), method: :destroy %>
+        <%= link_to 'Leave', user_group_path(id: group.id), method: :delete %>
       <% end %>
-    <% end %>  
+    <% else %>
+      <span class = 'badge'>G.リーダー</span>
+    <% end %> 
   <% end %>
-</div>  
+</div>

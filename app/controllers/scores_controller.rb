@@ -2,7 +2,7 @@ class ScoresController < ApplicationController
   before_action :set_score, only:[:show,:edit,:update,:destroy]
 
   def index
-    @scores = Score.all.order('created_at DESC').page(params[:page])
+    @scores = current_user.scores.all.order('created_at DESC').page(params[:page])
   end
 
   def show
@@ -28,12 +28,23 @@ class ScoresController < ApplicationController
   end
 
   def edit
+    @courses = Course.all
   end
 
   def update
+    if @score.update(score_params)
+      flash[:success] ='Edit Completed!'
+      redirect_to score_path(@score.id)
+    else
+      flash[:danger] ='Failed..'
+      render 'edit'
+    end
   end
 
   def destroy
+    @score.destroy
+    flash[:danger] ='Deleted..'
+    redirect_to scores_path
   end
 
   private

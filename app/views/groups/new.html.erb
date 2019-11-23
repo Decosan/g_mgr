@@ -1,9 +1,4 @@
-<%= form_with(model: @group,local: true)do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name, class:'form-control' %>
-  </div>
-
-  <%= f.submit '新規作成' %>
-
-<% end %>
+<div class = 'container'>
+  <h1>新規グループ</h1>
+  <%= render 'form' %>
+</div>

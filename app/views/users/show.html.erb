@@ -1,8 +1,12 @@
 <div class = 'container'>
   <h1>User Info.</h1>
 
-  <%= @user.name %>
-  <%= @user.email %>
+  <h4>
+    <%= @user.name %>
+    <%= @user.email %>
+  </h4>
 
-  <h2>Top 10 Scores</h2>
+  <%= link_to 'Edit', edit_user_path(@user.id) %>
+  <%= link_to 'Dele', user_path(@user.id), method: :delete %>
+  <h2>MY Top 10 Scores</h2>
 </div> 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'users#index'
+  root to: "sessions#new"
   resources :users
   resources :sessions, only:[:new,:create,:destroy]
 
@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   resources :courses, only:[:index,:show]
   resources :user_groups, only:[:create,:destroy]
   resources :groups
-  
+
 end
