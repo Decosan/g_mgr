@@ -19,32 +19,37 @@
 
     <div class='number_field'>
       <%= f.label :out_score, 'Score(OUT):' %>
-      <%= f.number_field :out_score, {value:45,in: 30...70} %>
+      <%= f.number_field :out_score %>
     </div>
 
     <div class='number_field'>
       <%= f.label :in_score, 'Score(IN):' %>
-      <%= f.number_field :in_score, {value:45,in: 30...70} %>
+      <%= f.number_field :in_score %>
     </div>
 
     <div class='number_field'>
       <%= f.label :total_score, 'Score(TOTAL):' %>
-      <%= f.number_field :total_score, {value:90} %>
+      <%= f.number_field :total_score %>
     </div>
 
     <div class='number_field'>
       <%= f.label :out_put, 'Put(OUT):' %>
-      <%= f.number_field :out_put, {value:15,in: 5...25} %>
+      <%= f.number_field :out_put %>
     </div>
 
     <div class='number_field'>
       <%= f.label :in_put, 'Put(IN):' %>
-      <%= f.number_field :in_put, {value:15,in: 5...25} %>
+      <%= f.number_field :in_put %>
     </div>
 
     <div class='number_field'>
       <%= f.label :total_put, 'Put(TOTAL):' %>
-      <%= f.number_field :total_put, {value:30} %>
+      <%= f.number_field :total_put %>
+    </div>
+
+    <div class="number_field">
+      <%= f.label :tag_list %>
+      <%= f.text_field :tag_list, value: @score.tag_list.join(',') %>
     </div>
 
     <br>

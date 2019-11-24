@@ -28,7 +28,8 @@
 
           <div class='panel-body'>
             <div class="post-content">
-              <div class="category">Category...
+              <div class="category">
+                <%= render 'scores/tag_list', tag_list: score.tag_list %>
               </div>
               <h4 class="title">SCORE: <%= score.out_score %> (OUT) + <%= score.in_score %> (IN)</h4>
               <h2>

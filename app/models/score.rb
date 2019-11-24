@@ -3,7 +3,7 @@ class Score < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many_attached :images
-  
+  acts_as_taggable
   
   validates :in_score, presence: true
   validates :out_score, presence: true

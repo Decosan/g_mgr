@@ -47,6 +47,11 @@
       <%= f.number_field :total_put, {value:30} %>
     </div>
 
+    <div class="number_field">
+      <%= f.label :tag_list %>
+      <%= f.text_field :tag_list, value: @score.tag_list.join(',') %>
+    </div>
+
     <br>
     <%= f.file_field :images, multiple: true %>
     <br>

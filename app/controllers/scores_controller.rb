@@ -50,7 +50,7 @@ class ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:play_day,:in_score,:out_score,:total_score,:in_put,:out_put,:total_put,:course_id, images: [])
+    params.require(:score).permit(:play_day,:in_score,:out_score,:total_score,:in_put,:out_put,:total_put,:course_id, :tag_list, images: [])
   end
 
   def set_score
