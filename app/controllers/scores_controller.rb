@@ -3,17 +3,18 @@ class ScoresController < ApplicationController
 
   def index
     @scores = current_user.scores.all.order('created_at DESC').page(params[:page])
+    if params[:tag_name]
+      @scores = @scores.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
-    @courses = Course.all
     @comment = Comment.new
     @comments = Comment.all.order('created_at DESC')
   end
 
   def new
     @score = Score.new
-    @courses = Course.all
   end
 
   def create
@@ -28,7 +29,6 @@ class ScoresController < ApplicationController
   end
 
   def edit
-    @courses = Course.all
   end
 
   def update

@@ -28,6 +28,9 @@
 
           <div class='panel-body'>
             <div class="post-content">
+              <div class = 'course_index'>
+                <%= score.course.name %>
+              </div>
               <div class="category">
                 <%= render 'scores/tag_list', tag_list: score.tag_list %>
               </div>
@@ -36,7 +39,7 @@
                  TOTAL: <%= score.total_score %>
               </h2>
               <p class="sub_title"></p>
-              <p>
+              <p class = 'text-orange'>
                 PUT: <%= score.out_put %> (OUT) + <%= score.in_put %> (IN) = <%= score.total_put %>
               </p>
               <div>
