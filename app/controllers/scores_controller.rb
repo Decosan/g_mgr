@@ -1,5 +1,6 @@
 class ScoresController < ApplicationController
   before_action :set_score, only:[:show,:edit,:update,:destroy]
+  before_action :tag_cloud, only:[:index]
 
   def index  
     if params[:score] && params[:score][:search]
@@ -56,7 +57,29 @@ class ScoresController < ApplicationController
     redirect_to scores_path
   end
 
+  def tag
+    @scores = current_user.scores.tagged_with(params[:id])
+    @tags = current_user.scores.tag_counts_on(:tags)
+    render :action => 'index'
+  end
+
+  def search
+    @search_params = score_search_params  #検索結果の画面で、フォームに検索した値を表示するために、paramsの値をビューで使えるようにする
+    @scores = Score.search(@search_params).joins(:customer)  #scoreモデルのsearchを呼び出し、引数としてparamsを渡している。
+  end
+
   private
+
+  def score_search_params
+    params.fetch(:search, {}).permit(:name_kana, :play_day_from, :play_day_to)
+    #fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+    #ここでの:searchには、フォームから送られてくるparamsの値が入っている
+  end
+
+  def tag_cloud
+    # order('count DESC')でカウントの多い順にタグを並べています
+    @tags = current_user.scores.tag_counts_on(:tags).order('count DESC')
+  end
 
   def score_params
     params.require(:score).permit(:play_day,:in_score,:out_score,:total_score,:in_put,:out_put,:total_put,:course_id, :tag_list, images: [])

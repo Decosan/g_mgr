@@ -7,7 +7,7 @@
     <div>
       <div>
         <%= form_with(scope: :score, url:scores_path, method: :get, local: true)do |f| %>
-          <%= f.label :tag_search, 'タグ検索' %>
+          <%= f.label :tag_search, '日付検索' %>
           <%= f.text_field :tag_search, placeholder:'検索文字を入力' %>
           <%= f.hidden_field :search, value: 'true' %>
           <%= f.submit '検索する' %>
@@ -16,6 +16,11 @@
       <div class = 'inline'>
         <%= link_to 'スコアを良い順にソート', scores_path(sort_scores: true) %>
         <%= link_to 'ソート解除', scores_path %>
+      </div>
+      <div>
+        <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+          <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+        <% end %>
       </div>
     </div>   
     <% @scores.each do |score| %>
