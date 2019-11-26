@@ -1,10 +1,19 @@
 class ScoresController < ApplicationController
   before_action :set_score, only:[:show,:edit,:update,:destroy]
 
-  def index
-    @scores = current_user.scores.all.order('created_at DESC').page(params[:page])
-    if params[:tag_name]
-      @scores = @scores.tagged_with("#{params[:tag_name]}")
+  def index  
+    if params[:score] && params[:score][:search]
+      if params[:score][:tag_search].present?
+        @scores = current_user.scores.tagged_with([params[:tag_search]], :any => true).page(params[:page])
+      end
+    else
+      if params[:tag_name]
+        @scores = current_user.scores.tagged_with("#{params[:tag_name]}").page(params[:page])
+      elsif params[:sort_scores]
+        @scores =  current_user.scores.order('total_score ASC').page(params[:page])
+      else
+        @scores = current_user.scores.all.order('play_day DESC').page(params[:page])
+      end
     end
   end
 
