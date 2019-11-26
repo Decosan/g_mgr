@@ -1,19 +1,29 @@
 class ScoresController < ApplicationController
   before_action :set_score, only:[:show,:edit,:update,:destroy]
 
-  def index
-    @scores = current_user.scores.all.order('created_at DESC').page(params[:page])
+  def index  
+    if params[:score] && params[:score][:search]
+      if params[:score][:tag_search].present?
+        @scores = current_user.scores.tagged_with([params[:tag_search]], :any => true).page(params[:page])
+      end
+    else
+      if params[:tag_name]
+        @scores = current_user.scores.tagged_with("#{params[:tag_name]}").page(params[:page])
+      elsif params[:sort_scores]
+        @scores =  current_user.scores.order('total_score ASC').page(params[:page])
+      else
+        @scores = current_user.scores.all.order('play_day DESC').page(params[:page])
+      end
+    end
   end
 
   def show
-    @courses = Course.all
     @comment = Comment.new
     @comments = Comment.all.order('created_at DESC')
   end
 
   def new
     @score = Score.new
-    @courses = Course.all
   end
 
   def create
@@ -28,7 +38,6 @@ class ScoresController < ApplicationController
   end
 
   def edit
-    @courses = Course.all
   end
 
   def update
@@ -50,7 +59,7 @@ class ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:play_day,:in_score,:out_score,:total_score,:in_put,:out_put,:total_put,:course_id, images: [])
+    params.require(:score).permit(:play_day,:in_score,:out_score,:total_score,:in_put,:out_put,:total_put,:course_id, :tag_list, images: [])
   end
 
   def set_score

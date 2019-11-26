@@ -44,3 +44,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 gem 'mini_magick', '~> 4.8'
+gem 'acts-as-taggable-on', '~> 6.0'

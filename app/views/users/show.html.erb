@@ -1,12 +1,71 @@
 <div class = 'container'>
-  <h1>User Info.</h1>
+  <% if @user.id == current_user.id %>
+    <h1>User Info.</h1>
 
-  <h4>
-    <%= @user.name %>
-    <%= @user.email %>
-  </h4>
+    <h4>
+      <%= @user.name %>
+      <%= @user.email %>
+    </h4>
 
-  <%= link_to 'Edit', edit_user_path(@user.id) %>
-  <%= link_to 'Dele', user_path(@user.id), method: :delete %>
-  <h2>MY Top 10 Scores</h2>
+    <%= link_to 'Edit', edit_user_path(@user.id) %>
+    <%= link_to 'Dele', user_path(@user.id), method: :delete %>
+    <h2>MY Top 10 Scores</h2>
+  <% else %>
+    <% @user.scores.each do |score| %>
+      <div class="col-lg-4">
+      <div class = 'member_name'>
+        <h3>Player: <%= score.user.name %></h3>
+      </div>
+        <div class="panel panel-default">
+          <div class='panel-heading img_height'>
+            <div class="thumbnail">
+              <div class="date">
+                <div class="day"><%= score.play_day.day %>
+                </div>
+                <div class="month"><%= score.play_day.strftime("%B") %>
+                </div>
+              </div>
+              <div class='score_index_img'>
+                <% if score.images.attached? %>
+                  <%= image_tag score.images.first.variant(resize:'300x250').processed %> <br>
+                <% else %>
+                  <h1 class='no_image'>No Image</h1>  
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class='panel-body'>
+            <div class="post-content">
+              <div class = 'course_index'>
+                <%= score.course.name %>
+              </div>
+              <div class="category">
+                <%= render 'scores/tag_list', tag_list: score.tag_list %>
+              </div>
+              <h4 class="title">SCORE: <%= score.out_score %> (OUT) + <%= score.in_score %> (IN)</h4>
+              <h2>
+                TOTAL: <%= score.total_score %>
+              </h2>
+              <p class = 'text-orange'>
+                PUT: <%= score.out_put %> (OUT) + <%= score.in_put %> (IN) = <%= score.total_put %>
+              </p>
+              <div>
+                <% if score.comments.present? %>
+                  <div class="post-meta">
+                    <span class="timestamp"><i class="fa fa-clock-">o</i><%= time_ago_in_words (score.comments.last.created_at) %>前  -</span><span class="comments"><i class="fa fa-comments"></i><a href="/scores/<%= score.id %>"><%= score.comments.count %> comments</a></span>
+                  </div>
+                <% else %>
+                  <div class="post-meta">
+                    <span class="timestamp"><i class="fa fa-clock-">o</i></span><span class="comments"><i class="fa fa-comments"></i><a href="/scores/<%= score.id %>">まだコメントはありません</a></span>
+                  </div>  
+                <% end %>
+              </div>
+            </div>
+          </div>  
+        </div>  
+        
+      </div>
+    <% end %>  
+  <% end %>  
 </div> 

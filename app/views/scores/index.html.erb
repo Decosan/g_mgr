@@ -4,6 +4,20 @@
   </div>
   
   <div class='row'>
+    <div>
+      <div>
+        <%= form_with(scope: :score, url:scores_path, method: :get, local: true)do |f| %>
+          <%= f.label :tag_search, 'タグ検索' %>
+          <%= f.text_field :tag_search, placeholder:'検索文字を入力' %>
+          <%= f.hidden_field :search, value: 'true' %>
+          <%= f.submit '検索する' %>
+        <% end %>
+      </div>
+      <div class = 'inline'>
+        <%= link_to 'スコアを良い順にソート', scores_path(sort_scores: true) %>
+        <%= link_to 'ソート解除', scores_path %>
+      </div>
+    </div>   
     <% @scores.each do |score| %>
       <div class="col-lg-4">
         
@@ -28,14 +42,18 @@
 
           <div class='panel-body'>
             <div class="post-content">
-              <div class="category">Category...
+              <div class = 'course_index'>
+                <%= score.course.name %>
+              </div>
+              <div class="category">
+                <%= render 'scores/tag_list', tag_list: score.tag_list %>
               </div>
               <h4 class="title">SCORE: <%= score.out_score %> (OUT) + <%= score.in_score %> (IN)</h4>
               <h2>
                  TOTAL: <%= score.total_score %>
               </h2>
               <p class="sub_title"></p>
-              <p>
+              <p class = 'text-orange'>
                 PUT: <%= score.out_put %> (OUT) + <%= score.in_put %> (IN) = <%= score.total_put %>
               </p>
               <div>
