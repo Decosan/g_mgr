@@ -6,11 +6,14 @@
   <div class='row'>
     <div>
       <div>
-        <%= form_with(scope: :score, url:scores_path, method: :get, local: true)do |f| %>
-          <%= f.label :tag_search, '日付検索' %>
-          <%= f.text_field :tag_search, placeholder:'検索文字を入力' %>
+        <%= form_with(scope: :search, url: scores_path, method: :get, local: true) do |f| %>
+
+          <%= f.label(:play_day, User.human_attribute_name(:play_day)) %>
+          <%= f.date_field :play_day_from, value: @search_params[:play_day_from] %> ~ <%= f.date_field :play_day_to, value: @search_params[:play_day_to] %>
+
           <%= f.hidden_field :search, value: 'true' %>
-          <%= f.submit '検索する' %>
+        
+          <%= submit_tag '検索', class: "button" %>
         <% end %>
       </div>
       <div class = 'inline'>

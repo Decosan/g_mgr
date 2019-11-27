@@ -4,8 +4,9 @@ class ScoresController < ApplicationController
 
   def index  
     if params[:score] && params[:score][:search]
-      if params[:score][:tag_search].present?
-        @scores = current_user.scores.tagged_with([params[:tag_search]], :any => true).page(params[:page])
+      if params[:score][:search_params].present?
+        @search_params = user_search_params
+        @users = User.search(@search_params)
       end
     else
       if params[:tag_name]
@@ -63,17 +64,10 @@ class ScoresController < ApplicationController
     render :action => 'index'
   end
 
-  def search
-    @search_params = score_search_params  #検索結果の画面で、フォームに検索した値を表示するために、paramsの値をビューで使えるようにする
-    @scores = Score.search(@search_params).joins(:customer)  #scoreモデルのsearchを呼び出し、引数としてparamsを渡している。
-  end
-
   private
 
-  def score_search_params
-    params.fetch(:search, {}).permit(:name_kana, :play_day_from, :play_day_to)
-    #fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
-    #ここでの:searchには、フォームから送られてくるparamsの値が入っている
+  def user_search_params
+    params.fetch(:search, {}).permit(:play_day_from, :play_day_to)
   end
 
   def tag_cloud
