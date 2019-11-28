@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     end
     collection do
       get :tag
-      get :search
     end
   end
 

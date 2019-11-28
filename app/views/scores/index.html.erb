@@ -8,11 +8,16 @@
       <div>
         <%= form_with(scope: :search, url: scores_path, method: :get, local: true) do |f| %>
 
-          <%= f.label(:play_day, User.human_attribute_name(:play_day)) %>
-          <%= f.date_field :play_day_from, value: @search_params[:play_day_from] %> ~ <%= f.date_field :play_day_to, value: @search_params[:play_day_to] %>
+          <div class="field">
+            <%= f.label :play_day, '日付検索' %>
+            <%= f.date_field :play_day_from, value: @search_params[:play_day_from] %> ~ <%= f.date_field :play_day_to, value: @search_params[:play_day_to] %>
+          </div>
 
-          <%= f.hidden_field :search, value: 'true' %>
-        
+          <div class="field">
+            <%= f.label :course_id, "コース選択" %>
+            <%= f.collection_select(:course_id, Course.all, :id, :name, selected: @search_params[:course_id], include_blank: '選択') %>
+          </div>
+
           <%= submit_tag '検索', class: "button" %>
         <% end %>
       </div>

@@ -3,19 +3,15 @@ class ScoresController < ApplicationController
   before_action :tag_cloud, only:[:index]
 
   def index  
-    if params[:score] && params[:score][:search]
-      if params[:score][:search_params].present?
-        @search_params = user_search_params
-        @users = User.search(@search_params)
-      end
+    if params[:tag_name]
+      @search_params = tag_search_params
+      @scores = current_user.scores.tagged_with("#{params[:tag_name]}").page(params[:page])
+    elsif params[:sort_scores]
+      @search_params = user_search_params
+      @scores =  current_user.scores.order('total_score ASC').page(params[:page])
     else
-      if params[:tag_name]
-        @scores = current_user.scores.tagged_with("#{params[:tag_name]}").page(params[:page])
-      elsif params[:sort_scores]
-        @scores =  current_user.scores.order('total_score ASC').page(params[:page])
-      else
-        @scores = current_user.scores.all.order('play_day DESC').page(params[:page])
-      end
+      @search_params = user_search_params
+      @scores = current_user.scores.search(@search_params).includes(:course)
     end
   end
 
@@ -67,7 +63,11 @@ class ScoresController < ApplicationController
   private
 
   def user_search_params
-    params.fetch(:search, {}).permit(:play_day_from, :play_day_to)
+    params.fetch(:search, {}).permit(:play_day_from, :play_day_to, :course_id)
+  end
+
+  def tag_search_params
+    params.fetch(:search, {}).permit(:tag_list)
   end
 
   def tag_cloud
