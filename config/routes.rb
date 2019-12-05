@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       get :tag
     end
   end
-
+  
+  resources :toppages, only:[:index]
   resources :courses, only:[:index,:show]
   resources :user_groups, only:[:create,:destroy]
   resources :groups

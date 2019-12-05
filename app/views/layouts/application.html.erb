@@ -51,22 +51,22 @@
           <% if logged_in? %>
               <a href="#">
                   <div class="col-xs-6 col-sm-3 headerNavBtn">
-                      トップページ
+                    <%= link_to 'My Scores', scores_path %>
                   </div>
               </a>
               <a href="#">
                   <div class="col-xs-6 col-sm-3 headerNavBtn">
-                      メニュー1
+                    <%= link_to 'My Page', user_path(current_user) %>
                   </div>
               </a>
               <a href="#">
                   <div class="col-xs-6 col-sm-3 headerNavBtn">
-                      メニュー2
+                    <%= link_to 'New Score', new_score_path %>
                   </div>
               </a>
               <a href="#">
                   <div class="col-xs-6 col-sm-3 headerNavBtn">
-                      メニュー3
+                    <%= link_to 'Groups', groups_path %>
                   </div>
               </a>
           <% else %>

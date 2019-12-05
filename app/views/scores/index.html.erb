@@ -9,6 +9,11 @@
         <%= form_with(scope: :search, url: scores_path, method: :get, local: true) do |f| %>
 
           <div class="field">
+            <%= f.label :total_score, 'スコア検索' %>
+            <%= f.number_field :total_score_from, value: @search_params[:total_score_from] %> ~ <%= f.number_field :total_score_to, value: @search_params[:total_score_to] %>
+          </div>
+
+          <div class="field">
             <%= f.label :play_day, '日付検索' %>
             <%= f.date_field :play_day_from, value: @search_params[:play_day_from] %> ~ <%= f.date_field :play_day_to, value: @search_params[:play_day_to] %>
           </div>
@@ -22,7 +27,6 @@
         <% end %>
       </div>
       <div class = 'inline'>
-        <%= link_to 'スコアを良い順にソート', scores_path(sort_scores: true) %>
         <%= link_to 'ソート解除', scores_path %>
       </div>
       <div>
