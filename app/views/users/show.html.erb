@@ -10,6 +10,11 @@
     <%= link_to 'Edit', edit_user_path(@user.id) %>
     <%= link_to 'Dele', user_path(@user.id), method: :delete %>
     <h2>MY Top 10 Scores</h2>
+    <ul>
+      <% @scores.each.with_index(1) do |score,index| %>
+        <li><%= index %>: <%= score.play_day %> / <%= score.total_score %> / <%= score.course.name %></li>
+      <% end %>
+    </ul>
   <% else %>
     <% @user.scores.each do |score| %>
       <div class="col-lg-4">

@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @scores = @user.scores.order('total_score ASC').limit(10)
   end
 
   def edit
